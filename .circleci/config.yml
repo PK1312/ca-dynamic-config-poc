@@ -1,0 +1,26 @@
+setup: true
+jobs:
+  setup:
+      docker:
+        - image: circleci/golang:latest
+      steps:
+        - checkout
+        - run:
+           name: Dynamically generate a pipline.yml
+           command: |
+             git clone https://github.com/PK1312/ca-dynamic-config-central.git
+             cd ca-dynamic-config-central
+             cat remoteconfig.yml
+        - continuation/continue:
+            configuration_path: ca-dynamic-config-central/remoteconfig.yml
+        - store_artifacts:
+            path: ca-dynamic-config-central/remoteconfig.yml
+            destination: yaml/remoteconfig.yml
+orbs:
+  go: circleci/go@1.6.0
+  continuation: circleci/continuation@0.1.2
+version: 2.1
+workflows:
+  setup:
+    jobs:
+      - setup
