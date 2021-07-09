@@ -9,13 +9,9 @@ jobs:
            name: Grab remote config and execute in new workflow
            command: |
              git clone https://github.com/PK1312/ca-dynamic-config-central.git
-             cd ca-dynamic-config-central
-             cat remoteconfig.yml
         - continuation/continue:
             configuration_path: ca-dynamic-config-central/remoteconfig.yml
-        - store_artifacts:
-            path: ca-dynamic-config-central/remoteconfig.yml
-            destination: yaml/remoteconfig.yml
+
 orbs:
   go: circleci/go@1.6.0
   continuation: circleci/continuation@0.1.2
