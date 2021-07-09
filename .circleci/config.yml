@@ -6,7 +6,7 @@ jobs:
       steps:
         - checkout
         - run:
-           name: Dynamically generate a pipline.yml
+           name: Grab remote config and execute in new workflow
            command: |
              git clone https://github.com/PK1312/ca-dynamic-config-central.git
              cd ca-dynamic-config-central
